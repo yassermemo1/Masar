@@ -42,8 +42,8 @@ class ViewController: UIViewController {
 
   override func viewDidLoad() {
     super.viewDidLoad()
-    // set initial location in Honolulu 21.355404, 39.977979 21.355639, 39.977882
-    let initialLocation = CLLocation(latitude: 21.317031, longitude: 39.857627)
+    // set initial location in 21.354884,39.9666064, 21.320496", "39.9666064
+    let initialLocation = CLLocation(latitude: 21.320496, longitude: 39.9666064)
     centerMapOnLocation(location: initialLocation)
 
     mapView.delegate = self
@@ -105,7 +105,7 @@ class ViewController: UIViewController {
       let works = dictionary["data"] as? [[Any]]
       else { return }
     // 5
-    let validWorks = works.compactMap { Artwork(json: $0) }
+    let validWorks = works.flatMap { Artwork(json: $0) }
     artworks.append(contentsOf: validWorks)
   }
 
